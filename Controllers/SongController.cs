@@ -7,14 +7,17 @@ public class SongController : Controller
 {
     // 
     // GET: /HelloWorld/
-    public string Index()
+    public IActionResult Index()
     {
-        return "This is my default action...";
+        return View();
     }
     // 
     // GET: /HelloWorld/Welcome/ 
-    public string Welcome()
+    public IActionResult Welcome(string name, int num=7)
     {
-        return "This is the Welcome action method...";
+        ViewData["Message"]="Hello "+name;
+        ViewData["num"]=num;
+        return View();
+
     }
 }

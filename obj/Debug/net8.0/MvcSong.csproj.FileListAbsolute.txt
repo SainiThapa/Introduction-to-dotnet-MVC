@@ -28,3 +28,4 @@
 /home/prisanmagar/Desktop/dotnet/MvcSong/obj/Debug/net8.0/MvcSong.pdb
 /home/prisanmagar/Desktop/dotnet/MvcSong/obj/Debug/net8.0/MvcSong.genruntimeconfig.cache
 /home/prisanmagar/Desktop/dotnet/MvcSong/obj/Debug/net8.0/ref/MvcSong.dll
+/home/prisanmagar/Desktop/dotnet/MvcSong/obj/Debug/net8.0/MvcSong.sourcelink.json
