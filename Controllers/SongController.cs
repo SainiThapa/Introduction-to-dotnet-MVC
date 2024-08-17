@@ -58,15 +58,15 @@ public class SongController : Controller
             return Problem("Entity set 'MvcSongContext.Song'  is null.");
         }
 
-        var movies = from m in _context.Song
+        var songs = from m in _context.Song
                     select m;
 
         if (!String.IsNullOrEmpty(searchString))
         {
-            movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
+            songs = songs.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
         }
 
-        return View(await movies.ToListAsync());
+        return View(await songs.ToListAsync());
     }
 
     // [HttpPost]
@@ -160,4 +160,39 @@ public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,
         return View(song);
     }
 
+
+
+    // GET: Movies/Delete/5
+    public async Task<IActionResult> Delete(int? id)
+    {
+
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var song = await _context.Song
+            .FirstOrDefaultAsync(m => m.Id == id);
+        if (song == null)
+        {
+            return NotFound();
+        }
+
+        return View(song);
+    }
+
+    // POST: s/Delete/5
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var song = await _context.Song.FindAsync(id);
+        if (song != null)
+        {
+            _context.Song.Remove(song);
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
 }
