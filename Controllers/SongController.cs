@@ -16,6 +16,29 @@ public class SongController : Controller
         _context = context;
     }
 
+
+        // GET:Song/Create
+        public IActionResult Create()
+        {
+        return View();
+        }
+
+        // POST: Song/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Song song)
+        {
+        if (ModelState.IsValid)
+        {
+            _context.Add(song);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(song);
+        }
+
     // GET: /HelloWorld/
     // public IActionResult Index()
     // {
@@ -23,10 +46,35 @@ public class SongController : Controller
     // }
 
     // GET: Movies
-    public async Task<IActionResult> Index()
+    // public async Task<IActionResult> Index()
+    // {
+    //     return View(await _context.Song.ToListAsync());
+    // }
+    [HttpGet]
+    public async Task<IActionResult> Index(string searchString)
     {
-        return View(await _context.Song.ToListAsync());
+        if (_context.Song == null)
+        {
+            return Problem("Entity set 'MvcSongContext.Song'  is null.");
+        }
+
+        var movies = from m in _context.Song
+                    select m;
+
+        if (!String.IsNullOrEmpty(searchString))
+        {
+            movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
+        }
+
+        return View(await movies.ToListAsync());
     }
+
+    // [HttpPost]
+    // public string Index(string searchString, bool notUsed)
+    // {
+    //     return "From [HttpPost]Index: filter on " + searchString;
+    // }
+
 
     // 
     // GET: /HelloWorld/Welcome/ 

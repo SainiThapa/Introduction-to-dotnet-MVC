@@ -11,7 +11,7 @@ using MvcSong.Data;
 namespace MvcSong.Migrations
 {
     [DbContext(typeof(MvcSongContext))]
-    [Migration("20240817113329_InitialCreate")]
+    [Migration("20240817132747_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -30,6 +30,9 @@ namespace MvcSong.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("Rating")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ReleaseDate")
