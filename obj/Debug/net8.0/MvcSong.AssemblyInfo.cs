@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MvcSong")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5ba6f96c55b243cd8f920eb1a860f2dbc10f5b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0774eea7993fc8ab3e73f598ded42cc10093c322")]
 [assembly: System.Reflection.AssemblyProductAttribute("MvcSong")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MvcSong")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
